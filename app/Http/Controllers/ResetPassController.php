@@ -18,7 +18,7 @@ class ResetPassController extends Controller
         ]);
     
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
+            return Helper::handleValidationErrors($validator);
         }
         try{
         $name = $request->name;
@@ -28,7 +28,7 @@ class ResetPassController extends Controller
         return response()->json(["status"=> "success"],200);
 
         } catch (\Throwable $th) {
-            return Helper::handleException($th);
+            return Helper::handleExceptions($th);
         }
         
     }
